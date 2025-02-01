@@ -49,7 +49,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'amishadeploymentsample'
-          slot-name: 'amishadeploymentsample-stage'  # Deploy to your correct staging slot
+          slot-name: 'stage'  # Deploy to your correct staging slot
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_490F97C5B2FB4E80AD7D923CF0D268A6 }}
           package: .
 
