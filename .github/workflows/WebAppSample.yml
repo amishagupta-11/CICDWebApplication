@@ -46,15 +46,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: published-app
-          path: publish
- 
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          path: publish     
  
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: "sampleappamisha"
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
           package: publish
