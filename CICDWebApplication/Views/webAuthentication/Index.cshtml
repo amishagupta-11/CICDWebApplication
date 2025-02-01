@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Enter Data for Synchronization";
+}
+
+<h2>Enter Data for Synchronization</h2>
+
+<form asp-action="Synchronize" method="post">
+    <label for="inputData">Data:</label><br />
+    <textarea id="inputData" name="inputData" rows="6" cols="80"></textarea><br /><br />
+    <button type="submit">Submit</button>
+</form>
