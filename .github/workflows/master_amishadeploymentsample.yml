@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy ASP.Net Core app to Azure Web App - amishadeploymentsample
 
 on:
@@ -47,11 +44,22 @@ jobs:
         with:
           name: .net-app
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
+      - name: Deploy to Staging Slot
+        id: deploy-to-staging
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'amishadeploymentsample'
-          slot-name: 'Production'
+          slot-name: 'amishadeploymentsample-stage'  # Deploy to your correct staging slot
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_490F97C5B2FB4E80AD7D923CF0D268A6 }}
           package: .
+
+  swap:
+    runs-on: windows-latest
+    needs: deploy
+    steps:
+      - name: Swap Staging to Production
+        uses: azure/CLI@v1
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az webapp deployment slot swap --resource-group amisha.gupta-ResourceGroup --name amishadeploymentsample --slot amishadeploymentsample-stage --target-slot production
