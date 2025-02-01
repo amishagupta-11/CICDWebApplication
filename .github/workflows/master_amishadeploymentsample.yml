@@ -50,7 +50,7 @@ jobs:
         with:
           app-name: 'amishadeploymentsample'
           slot-name: 'stage'  # Deploy to your correct staging slot
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_490F97C5B2FB4E80AD7D923CF0D268A6 }}
+          publish-profile: ${{ secrets.STAGE_AZURE_PROFILE }}
           package: .
 
   swap:
